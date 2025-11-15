@@ -1,11 +1,145 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+	<div class="preloader">
+		<div class="intro-title">
+			<h1>Román González</h1>
+		</div>
+		<div class="outro-title">
+			<h1>G</h1>
+		</div>
+	</div>
+
+	<div class="split-overlay">
+		<div class="intro-title">
+			<h1>Román González</h1>
+		</div>
+		<div class="outro-title">
+			<h1>G</h1>
+		</div>
+	</div>
+
+	<div class="tags-overlay">
+		<div class="tag top-[15%] left-[15%]"><p class="text-sm font-semibold">DESARROLLADOR</p></div>
+		<div class="tag bottom-[15%] left-[25%]"><p class="text-sm font-semibold">ENTUSIASTA</p></div>
+		<div class="tag bottom-[30%] right-[15%]"><p class="text-sm font-semibold">CREATIVO</p></div>
+	</div>
+
+	<div
+		class="min-h-dvh bg-linear-to-br from-slate-950 via-purple-950 to-slate-950 text-white"
+		style="clip-path: polygon(0 48%, 0 48%, 0 52%, 0 52%); z-index: 2;"
+	>
+		<section
+			class="min-h-dvh container flex flex-col items-center justify-center text-center mx-auto"
+			style="clip-path: polygon(0 50%, 100% 50%, 100% 50%, 0 50%);"
+		>
+			<div class="test-container">
+				<h2 class="section-title">Desarrollador Frontend</h2>
+				<p class="section-subtitle">Desarrollador Frontend & Diseñador UX/UI</p>
+				<p class="section-description">
+					Soy un desarrollador frontend apasionado por crear experiencias digitales atractivas y funcionales. Con habilidades en HTML, CSS, JavaScript y frameworks modernos, me esfuerzo por transformar ideas en realidad a través de un diseño intuitivo y una implementación técnica sólida.
+				</p>
+			</div>
+		</section>
+	</div>
 </Layout>
+
+<style>
+	.intro-title h1, .outro-title h1 {
+		font-size: 6rem;
+		font-weight: bold;
+		line-height: 1;
+	}
+
+	.preloader, .split-overlay, .tags-overlay {
+		position: fixed;
+		width: 100vw;
+		height: 100dvh;
+	}
+
+	.preloader, .split-overlay {
+		background-color: #0a0a0a;
+		color: #fff;
+	}
+
+	.preloader, .tags-overlay {
+		z-index: 2;
+	}
+
+	.split-overlay {
+		z-index: 1;
+	}
+
+	.intro-title {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 100%;
+		text-align: center;
+	}
+
+	.outro-title {
+		position: absolute;
+		top: 50%;
+		left: calc(50% + 10rem);
+		transform: translate(-50%, -50%);
+	}
+
+	.tag {
+		position: absolute;
+		width: max-content;
+		color: #5a5a5a;
+		overflow: hidden;
+	}
+
+	.test-container h2 {
+		text-align: center;
+		width: 100%;
+		font-size: 3rem;
+	}
+
+	.test-container .char span {
+		position: relative;
+		display: inline-block;
+		transform: translateY(100%);
+		will-change: transform;
+	}
+
+	.intro-title .char, .outro-title .char, .test-container .char {
+		position: relative;
+		display: inline-block;
+		overflow: hidden;
+	}
+
+	/*.intro-title .char, .outro-title .char {
+		margin-top: 0.75rem;
+	} */
+
+	.intro-title .char span, .outro-title .char span, .tag .word {
+		position: relative;
+		display: inline-block;
+		transform: translateY(-100%);
+		will-change: transform;
+	}
+
+	.intro-title .first-char {
+		transform-origin: top left;
+	}
+
+	@media (max-width: 1000px) {
+		.intro-title h1, .outro-title h1 {
+			font-size: 2.5rem;
+		}
+
+		.outro-title {
+			left: calc(50% + 4rem);
+		}
+
+		.test-container h2 {
+			font-size: 2.5rem;
+		}
+	}
+</style>
