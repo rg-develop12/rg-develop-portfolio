@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>rg-develop - Portafolio</title>
+		<meta name="description" content="Portafolio web de rg-develop." />
+		<meta name="author" content="rg-develop" />
+		<meta name="keywords" content="rg-develop, portafolio, desarrollo web, programacion" />
+		<meta name="robots" content="index, follow" />
+		<meta property="og:title" content="rg-develop - Portafolio" />
+		<meta property="og:description" content="Portafolio web de rg-develop." />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://rg-develop.com" />
+		<meta property="og:image" content="https://rg-develop.com/og-image.png" />
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style is:global>
+	@import "tailwindcss";
+
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>
