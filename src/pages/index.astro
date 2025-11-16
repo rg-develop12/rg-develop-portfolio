@@ -5,26 +5,26 @@ import Layout from '../layouts/Layout.astro';
 <Layout>
 	<div class="preloader">
 		<div class="intro-title">
-			<h1>Román González</h1>
+			<h1>Román</h1>
 		</div>
 		<div class="outro-title">
-			<h1>G</h1>
+			<h1>González</h1>
 		</div>
 	</div>
 
 	<div class="split-overlay">
 		<div class="intro-title">
-			<h1>Román González</h1>
+			<h1>Román</h1>
 		</div>
 		<div class="outro-title">
-			<h1>G</h1>
+			<h1>González</h1>
 		</div>
 	</div>
 
 	<div class="tags-overlay">
 		<div class="tag tag-1"><p class="text-sm font-semibold">DESARROLLADOR</p></div>
 		<div class="tag tag-2"><p class="text-sm font-semibold">ENTUSIASTA</p></div>
-		<div class="tag tag-3"><p class="text-sm font-semibold">CREATIVO</p></div>
+		<div class="tag tag-3"><p class="text-sm font-semibold">COLABORADOR</p></div>
 	</div>
 
 	<div class="page-reveal bg-linear-to-br from-slate-950 via-purple-950 to-slate-950">
@@ -54,6 +54,10 @@ import Layout from '../layouts/Layout.astro';
 		position: fixed;
 		width: 100vw;
 		height: 100dvh;
+		justify-content: center;
+		align-items: center;
+		display: flex;
+		gap: 1rem;
 	}
 
 	.preloader, .split-overlay {
@@ -67,22 +71,6 @@ import Layout from '../layouts/Layout.astro';
 
 	.split-overlay {
 		z-index: 1;
-	}
-
-	.intro-title {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		width: 100%;
-		text-align: center;
-	}
-
-	.outro-title {
-		position: absolute;
-		top: 50%;
-		left: calc(50% + 10rem);
-		transform: translate(-50%, -50%);
 	}
 
 	.tag {
@@ -183,10 +171,6 @@ import Layout from '../layouts/Layout.astro';
 			font-size: 2.5rem;
 		}
 
-		.outro-title {
-			left: calc(50% + 4rem);
-		}
-
 		.card {
 			width: 75%;
 		}
@@ -224,8 +208,8 @@ import Layout from '../layouts/Layout.astro';
     });
   }
 
-	splitTextElements(".intro-title h1", "words, chars", true);
-  splitTextElements(".outro-title h1");
+	splitTextElements(".intro-title h1", "chars", true);
+  splitTextElements(".outro-title h1", "chars", true);
   splitTextElements(".tag p", "words");
   splitTextElements(".card h2", "words, chars", true);
 
@@ -248,7 +232,7 @@ import Layout from '../layouts/Layout.astro';
 
 	// Animación para el título del prelaoder
 	tl.to(
-		".preloader .intro-title .char span",
+		[".preloader .intro-title .char span", ".preloader .outro-title .char span"],
 		{
 			y: "0%",
 			duration: 0.4,
@@ -256,7 +240,7 @@ import Layout from '../layouts/Layout.astro';
 		},
 		0.2
 	).to(
-		".preloader .intro-title .char:not(.first-char) span",
+		[".preloader .intro-title .char:not(.first-char) span", ".preloader .outro-title .char:not(.first-char) span"],
 		{
 			y: "100%",
 			duration: 0.4,
@@ -264,33 +248,33 @@ import Layout from '../layouts/Layout.astro';
 		},
 		1.3
 	).to(
-		".preloader .outro-title .char span",
+		".preloader .intro-title .first-char",
 		{
-			y: "15%",
-			duration: 0.4,
-			stagger: 0.075
+			x: isMobile ? "9rem" : "20.25rem",
+			fontSize: isMobile ? "3rem" : "8rem",
+			duration: 0.7
 		},
-		2
+		2.5
+	).to(
+		".preloader .outro-title .first-char",
+		{
+			x: isMobile ? "0.5rem" : "1.35rem",
+			y: "15%",
+			fontSize: isMobile ? "3rem" : "8rem",
+			duration: 0.7
+		},
+		2.5
 	).to(
 		".preloader .intro-title .first-char",
 		{
-			x: isMobile ? "7.5rem" : "19.25rem",
-			fontSize: isMobile ? "7rem" : "8rem",
-			duration: 0.7
-		},
-		2.5
-	).to(
-		".preloader .outro-title .char",
-		{
-			x: isMobile ? "-2.2rem" : "-8.35rem",
-			fontSize: isMobile ? "7rem" : "8rem",
-			duration: 0.7
-		},
-		2.5
-	).to(
-		[".preloader .intro-title .first-char", ".preloader .outro-title .char"],
-		{
 			y: "-100%",
+			duration: 0.3,
+		},
+		3.2
+	).to(
+		".preloader .outro-title .first-char",
+		{
+			y: "-85%",
 			duration: 0.3,
 		},
 		3.2
@@ -303,6 +287,7 @@ import Layout from '../layouts/Layout.astro';
 		3.6
 	);
 
+	// Animación para las tags saliendo
 	tags.forEach((tag, index) => {
 		tl.to(
 			tag.querySelectorAll("p .word"),
