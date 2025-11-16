@@ -28,158 +28,26 @@ import Layout from '../layouts/Layout.astro';
 	</div>
 
 	<div class="page-reveal bg-linear-to-br from-slate-950 via-purple-950 to-slate-950">
-		<nav>
-			<p>RG</p>
+		<nav class="max-h-16 h-full px-8 w-full flex items-center text-2xl font-bold border-b border-white/10">
+			<p class="inline-block">R</p>
+			<p class="inline-block mt-1.5 -ml-[2.5px]">G</p>
 		</nav>
 
-		<div class="card">
-			<h2>Desarrollador Frontend</h2>
-		</div>
-
-		<footer>
-			<p>Scroll Down</p>
-			<p>Made by rg-develop</p>
-		</footer>
+		<section class="w-full h-full relative">
+			<div class="card w-[90%] max-w-5xl flex flex-col items-center py-8 mx-auto">
+				<div class="flex items-center gap-2 text-base sm:text-lg text-white font-semibold">
+					<span>Web</span>
+					<span aria-hidden="true" class="opacity-80">·</span>
+					<span>Mobile</span>
+					<span aria-hidden="true" class="opacity-80">·</span>
+					<span>Desktop</span>
+				</div>
+				<h2 class="text-[#E670D5]">Desarrollador Frontend</h2>
+				<p class="text-white text-base sm:text-lg text-center max-w-2xl">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque itaque et aspernatur aliquid, blanditiis quo dolore tempore obcaecati cupiditate aliquam voluptatum optio placeat unde quisquam est, consequuntur nesciunt necessitatibus ducimus?</p>
+			</div>
+		</section>
 	</div>
 </Layout>
-
-<style is:global>
-	.intro-title h1, .outro-title h1 {
-		font-size: 6rem;
-		font-weight: bold;
-		line-height: 1;
-	}
-
-	.preloader, .split-overlay, .tags-overlay {
-		position: fixed;
-		width: 100vw;
-		height: 100dvh;
-		justify-content: center;
-		align-items: center;
-		display: flex;
-		gap: 1rem;
-	}
-
-	.preloader, .split-overlay {
-		background-color: #0a0a0a;
-		color: #fff;
-	}
-
-	.preloader, .tags-overlay {
-		z-index: 2;
-	}
-
-	.split-overlay {
-		z-index: 1;
-	}
-
-	.tag {
-		position: absolute;
-		width: max-content;
-		color: #5a5a5a;
-		overflow: hidden;
-	}
-
-	.tag-1 {
-		top: 15%;
-		left: 15%;
-	}
-
-	.tag-2 {
-		bottom: 15%;
-		left: 25%;
-	}
-
-	.tag-3 {
-		bottom: 30%;
-		right: 15%;
-	}
-
-	.card {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		width: 30%;
-		height: 70%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		background-color: #fff;
-		clip-path: polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%);
-	}
-
-	.card h2 {
-		text-align: center;
-		width: 100%;
-		font-size: 3rem;
-	}
-
-	.card .char span {
-		position: relative;
-		display: inline-block;
-		transform: translateY(100%);
-		will-change: transform;
-	}
-
-	.intro-title .char, .outro-title .char, .card .char {
-		position: relative;
-		display: inline-block;
-		overflow: hidden;
-	}
-
-	.intro-title .char, .outro-title .char {
-		margin-top: 0.75rem;
-	} 
-
-	.intro-title .char span, .outro-title .char span, .tag .word {
-		position: relative;
-		display: inline-block;
-		transform: translateY(-100%);
-		will-change: transform;
-	}
-
-	.intro-title .first-char {
-		transform-origin: top left;
-	}
-
-	.page-reveal {
-		position: relative;
-		width: 100%;
-		height: 100%;
-		min-height: 100dvh;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		clip-path: polygon(0 48%, 0 48%, 0 52%, 0 52%);
-		z-index: 2;
-	}
-
-	nav, footer {
-		position: relative;
-		width: 100vw;
-		padding: 2em;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		z-index: 2;
-		color: #fff;
-	}
-
-	@media (max-width: 1000px) {
-		.intro-title h1, .outro-title h1 {
-			font-size: 2.5rem;
-		}
-
-		.card {
-			width: 75%;
-		}
-
-		.card h2 {
-			font-size: 2.5rem;
-		}
-	}
-</style>
 
 <script>
 	import gsap from 'gsap';
@@ -254,7 +122,7 @@ import Layout from '../layouts/Layout.astro';
 			fontSize: isMobile ? "3rem" : "8rem",
 			duration: 0.7
 		},
-		2.5
+		2
 	).to(
 		".preloader .outro-title .first-char",
 		{
@@ -263,28 +131,28 @@ import Layout from '../layouts/Layout.astro';
 			fontSize: isMobile ? "3rem" : "8rem",
 			duration: 0.7
 		},
-		2.5
+		2
 	).to(
 		".preloader .intro-title .first-char",
 		{
 			y: "-100%",
 			duration: 0.3,
 		},
-		3.2
+		2.7
 	).to(
 		".preloader .outro-title .first-char",
 		{
 			y: "-85%",
 			duration: 0.3,
 		},
-		3.2
+		2.7
 	).to(
 		".page-reveal",
 		{
 			clipPath: "polygon(0 48%, 100% 48%, 100% 52%, 0 52%)",
 			duration: 0.7,
 		},
-		3.6
+		3.1
 	);
 
 	// Animación para las tags saliendo
@@ -295,7 +163,7 @@ import Layout from '../layouts/Layout.astro';
 				y: "100%",
 				duration: 0.3
 			},
-			3.8 + index * 0.1
+			3.3 + index * 0.1
 		);
 	});
 
@@ -305,28 +173,28 @@ import Layout from '../layouts/Layout.astro';
 			y: (i) => (i === 0 ? "-50%" : "50%"),
 			duration: 1,
 		},
-		4.5
+		4
 	).to(
 		".page-reveal",
 		{
 			clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
 			duration: 0.7,
 		},
-		4.7
+		4.2
 	).to(
 		".page-reveal .card",
 		{
 			clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
 			duration: 0.75,
 		},
-		4.9
+		4.4
 	).to(
 		".page-reveal .card h2 .char span",
 		{
-			y: "0%",
+			y: "12%",
 			duration: 0.4,
 			stagger: 0.05
 		},
-		5
+		4.5
 	);
 </script>
