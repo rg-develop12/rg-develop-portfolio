@@ -59,8 +59,27 @@ import EmailIcon from '../assets/icons/mail.svg';
 					<span aria-hidden="true" class="opacity-80">·</span>
 					<span>Desktop</span>
 				</div>
-				<h2 class="text-[#1A1A2E]">Desarrollador Frontend</h2>
-				<p class="text-[#1A1A2E] text-base sm:text-lg text-center max-w-2xl">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque itaque et aspernatur aliquid, blanditiis quo dolore tempore obcaecati cupiditate aliquam voluptatum optio placeat unde quisquam est, consequuntur nesciunt necessitatibus ducimus?</p>
+
+				<h2 class="text-[#1A1A2E] my-5">
+					<span id="building-word">Construyendo</span>
+
+					<span class="underline-wrapper">
+							Interfaces
+							<span class="underline-element"></span>
+					</span>
+					
+					<span class="title-rest">
+						desde el 
+						<span class="wipe-wrapper">
+								Código
+								<span class="wipe-overlay">Código</span>
+						</span>
+					</span>
+				</h2>
+
+				<p class="text-[#1A1A2E] text-base sm:text-lg text-center max-w-2xl">
+					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque itaque et aspernatur aliquid, blanditiis quo dolore tempore obcaecati cupiditate aliquam voluptatum optio placeat unde quisquam est, consequuntur nesciunt necessitatibus ducimus?
+				</p>
 			</div>
 
 			<div class="custom-shape-divider-bottom-1763342963">
@@ -86,15 +105,15 @@ import EmailIcon from '../assets/icons/mail.svg';
 }
 
 	.custom-shape-divider-bottom-1763342963 svg {
-			position: relative;
-			display: block;
-			width: calc(100% + 1.3px);
-			height: 160px;
-			transform: rotateY(180deg);
+		position: relative;
+		display: block;
+		width: calc(100% + 1.3px);
+		height: 160px;
+		transform: rotateY(180deg);
 	}
 
 	.custom-shape-divider-bottom-1763342963 .shape-fill {
-			fill: #FFFFFF;
+		fill: #FFFFFF;
 	}
 </style>
 
@@ -128,7 +147,16 @@ import EmailIcon from '../assets/icons/mail.svg';
 	splitTextElements(".intro-title h1", "chars", true);
   splitTextElements(".outro-title h1", "chars", true);
   splitTextElements(".tag p", "words");
-  splitTextElements(".card h2", "words, chars", true);
+
+	const buildingWord = new SplitText("#building-word", { type: "chars" });
+	gsap.set(buildingWord.chars, { 
+		yPercent: -100,
+		opacity: 0 
+	});
+	gsap.set(".underline-wrapper", {
+		y: "-100%",
+		opacity: 0
+	})
 
 	const isMobile = window.innerWidth <= 1000;
 
@@ -143,7 +171,7 @@ import EmailIcon from '../assets/icons/mail.svg';
 				y: "0%",
 				duration: 0.6
 			},
-			0.5 + index * 0.1
+			0.2 + index * 0.1
 		);
 	});
 
@@ -216,6 +244,7 @@ import EmailIcon from '../assets/icons/mail.svg';
 		);
 	});
 
+	// Animación para la entrada de la página
 	tl.to(
 		[".preloader", ".split-overlay"],
 		{
@@ -238,12 +267,46 @@ import EmailIcon from '../assets/icons/mail.svg';
 		},
 		4.4
 	).to(
-		".page-reveal .card h2 .char span",
+		buildingWord.chars,
 		{
-			y: "12%",
-			duration: 0.4,
-			stagger: 0.05
+			yPercent: 0,
+			opacity: 1,
+			stagger: 0.05,
+			duration: 0.8,
+			ease: "bounce.out"
 		},
-		4.5
+		4.6
+	).to(
+		".underline-wrapper",
+		{
+			y: "0%",
+			opacity: 1,
+			duration: 0.7,
+			ease: "power2.out"
+		}, 
+		"<0.5" // Empieza 0.5s después de que COMIENCE la animación anterior
+	).to(
+		".title-rest",
+		{
+			clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+			duration: 0.7,
+			ease: "power2.out"
+		}, 
+		"<0.5"
+	)
+	.to(
+		".underline-element",
+		{
+			scaleX: 1,
+			duration: 0.7,
+		},
+		5.3
+	).to(
+		".wipe-overlay",
+		{
+			width: "100%",
+			duration: 0.7
+		},
+		5.80
 	);
 </script>
