@@ -1,0 +1,204 @@
+---
+import BlobShape from '../components/BlobShape.astro';
+---
+
+<section class="w-full h-full relative">
+  <BlobShape color="#c4b5fd" size={150} shape="shape-2" title="Blob shape 1"
+    className='absolute top-1 left-5 sm:top-10 sm:left-15' />
+  <BlobShape color="#fde68a" size={200} shape="shape-1" title="Blob shape 2"
+    className='absolute bottom-5 right-1 sm:bottom-20 sm:right-20 hidden sm:block' />
+  <BlobShape color="#fde68a" size={100} shape="shape-1" title="Blob shape 2"
+  className='absolute right-1 bottom-24 sm:right-20 block sm:hidden' />
+  
+  <div class="card w-[90%] max-w-5xl flex flex-col items-center py-8 mx-auto">
+    <div class="flex items-center gap-2 text-base sm:text-lg text-[#1A1A2E] font-semibold">
+      <span>Web</span>
+      <span aria-hidden="true" class="opacity-80">·</span>
+      <span>Mobile</span>
+      <span aria-hidden="true" class="opacity-80">·</span>
+      <span>Desktop</span>
+    </div>
+
+    <h2 class="text-[#1A1A2E] my-5 relative">
+      <div class="absolute left-2 sm:left-20 -top-5 text-3xl rotate-12 floating-icon" id="icon1">🚧</div>
+      <div class="absolute -right-1 sm:right-24 bottom-5 text-3xl -rotate-12 floating-icon" id="icon2">🧑🏻‍💻</div>
+      <span id="building-word">Construyendo</span>
+
+      <span class="underline-wrapper">
+          Interfaces
+          <span class="underline-element"></span>
+      </span>
+      
+      <span class="title-rest">
+        desde el 
+        <span class="wipe-wrapper">
+            Código
+            <span class="wipe-overlay">Código</span>
+        </span>
+      </span>
+    </h2>
+
+    <p class="text-[#1A1A2E] text-base sm:text-lg text-center max-w-2xl">
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque itaque et aspernatur aliquid, blanditiis quo dolore tempore obcaecati cupiditate aliquam voluptatum optio placeat unde quisquam est, consequuntur nesciunt necessitatibus ducimus?
+    </p>
+  </div>
+
+  <div class="custom-shape-divider-bottom-1763342963">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+      <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+      <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+    </svg>
+  </div>
+</section>
+
+<style>
+	.custom-shape-divider-bottom-1763342963 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+	.custom-shape-divider-bottom-1763342963 svg {
+		position: relative;
+		display: block;
+		width: calc(100% + 1.3px);
+		height: 160px;
+		transform: rotateY(180deg);
+	}
+
+	.custom-shape-divider-bottom-1763342963 .shape-fill {
+		fill: #FFFFFF;
+	}
+</style>
+
+<script>
+  import gsap from 'gsap';
+	import { CustomEase } from 'gsap/CustomEase';
+	import { SplitText } from 'gsap/SplitText';
+
+  gsap.registerPlugin(CustomEase, SplitText);
+	CustomEase.create("hop", ".8, 0, .3, 1");
+
+  function iniciarFlotacionIconos() {
+		// Flotación arriba/abajo
+		gsap.to(".floating-icon", {
+			y: 10, // Menos desplazamiento para ser más sutil
+			duration: 1.5,
+			ease: "sine.inOut", 
+			repeat: -1, 
+			yoyo: true, 
+			stagger: {
+				each: 0.5,
+				from: "random"
+			},
+			overwrite: "auto"
+		});
+
+		// Rotación sutil
+		gsap.to("#icon1", {
+			rotate: "+=10",
+			duration: 3.5,
+			ease: "sine.inOut",
+			repeat: -1,
+			yoyo: true,
+			overwrite: "auto"
+		});
+
+		gsap.to("#icon2", {
+			rotate: "-=10",
+			duration: 3.5,
+			ease: "sine.inOut",
+			repeat: -1,
+			yoyo: true,
+			overwrite: "auto",
+			delay: 1.75
+		});
+	}
+
+  // set para la animación de las letras del título "Construyendo" y la palabra subrayada "Interfaces"
+	const buildingWord = new SplitText("#building-word", { type: "chars" });
+	gsap.set(buildingWord.chars, { 
+		yPercent: -100,
+		opacity: 0 
+	});
+	gsap.set(".underline-wrapper", {
+		y: "-100%",
+		opacity: 0
+	})
+
+	// set para los iconos flotantes
+	gsap.set(".floating-icon", {
+		opacity: 0,
+		scale: 0,
+	});
+
+  const tl = gsap.timeline({ defaults: { ease: "hop" } });
+	const tags = gsap.utils.toArray<HTMLElement>(".tag");
+
+  tl.to(
+		".page-reveal .card",
+		{
+			clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+			duration: 0.75,
+		},
+		4.4
+	).to(
+		buildingWord.chars,
+		{
+			yPercent: 0,
+			opacity: 1,
+			stagger: 0.05,
+			duration: 0.8,
+			ease: "bounce.out"
+		},
+		4.6
+	).to(
+		".underline-wrapper",
+		{
+			y: "0%",
+			opacity: 1,
+			duration: 0.7,
+			ease: "power2.out"
+		}, 
+		"<0.5" // Empieza 0.5s después de que COMIENCE la animación anterior
+	).to(
+		".title-rest",
+		{
+			clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+			duration: 0.7,
+			ease: "power2.out"
+		}, 
+		"<0.5"
+	)
+	.to(
+		".underline-element",
+		{
+			scaleX: 1,
+			duration: 0.7,
+		},
+		5.3
+	).to(
+		".wipe-overlay",
+		{
+			width: "100%",
+			duration: 0.7
+		},
+		5.80
+	).to(
+		".floating-icon",
+		{
+			opacity: 1,
+			scale: 1,
+			duration: 0.6,
+			ease: "back.out(1.7)",
+			stagger: 0.1,
+			onComplete: iniciarFlotacionIconos 
+		}, 
+		"<0.2" // Empieza 0.2s *después* de que empiecen las imágenes
+	)
+</script>
