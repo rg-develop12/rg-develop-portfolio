@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import BlobShape from '../components/BlobShape.astro';
+
 import LinkedInIcon from '../assets/icons/brand-linkedin.svg';
 import GitHubIcon from '../assets/icons/brand-github.svg';
 import EmailIcon from '../assets/icons/mail.svg';
@@ -34,7 +36,7 @@ import EmailIcon from '../assets/icons/mail.svg';
 		<nav class="max-h-16 h-full px-10 w-full flex items-center justify-between text-2xl font-bold border-b border-gray-300">
 			<div class="flex items-center">
 				<p class="inline-block text-[#1A1A2E]">R</p>
-				<p class="inline-block mt-1.5 -ml-1 text-[#1A1A2E]">G</p>
+				<p class="inline-block mt-1.5 -ml-0.5 text-[#1A1A2E]">G</p>
 			</div>
 
 			<div class="flex items-center gap-6 text-[#1A1A2E]">
@@ -51,6 +53,13 @@ import EmailIcon from '../assets/icons/mail.svg';
 		</nav>
 
 		<section class="w-full h-full relative">
+			<BlobShape color="#c4b5fd" size={150} shape="shape-2" title="Blob shape 1"
+				className='absolute top-1 left-5 sm:top-10 sm:left-15' />
+			<BlobShape color="#fde68a" size={200} shape="shape-1" title="Blob shape 2"
+				className='absolute bottom-5 right-1 sm:bottom-20 sm:right-20 hidden sm:block' />
+			<BlobShape color="#fde68a" size={100} shape="shape-1" title="Blob shape 2"
+			className='absolute right-1 bottom-24 sm:right-20 block sm:hidden' />
+			
 			<div class="card w-[90%] max-w-5xl flex flex-col items-center py-8 mx-auto">
 				<div class="flex items-center gap-2 text-base sm:text-lg text-[#1A1A2E] font-semibold">
 					<span>Web</span>
@@ -60,7 +69,9 @@ import EmailIcon from '../assets/icons/mail.svg';
 					<span>Desktop</span>
 				</div>
 
-				<h2 class="text-[#1A1A2E] my-5">
+				<h2 class="text-[#1A1A2E] my-5 relative">
+					<div class="absolute left-2 sm:left-20 -top-5 text-3xl rotate-12 floating-icon" id="icon1">🚧</div>
+					<div class="absolute -right-1 sm:right-24 bottom-5 text-3xl -rotate-12 floating-icon" id="icon2">🧑🏻‍💻</div>
 					<span id="building-word">Construyendo</span>
 
 					<span class="underline-wrapper">
@@ -125,6 +136,42 @@ import EmailIcon from '../assets/icons/mail.svg';
 	gsap.registerPlugin(CustomEase, SplitText);
 	CustomEase.create("hop", ".8, 0, .3, 1");
 
+	function iniciarFlotacionIconos() {
+		// Flotación arriba/abajo
+		gsap.to(".floating-icon", {
+			y: 10, // Menos desplazamiento para ser más sutil
+			duration: 1.5,
+			ease: "sine.inOut", 
+			repeat: -1, 
+			yoyo: true, 
+			stagger: {
+				each: 0.5,
+				from: "random"
+			},
+			overwrite: "auto"
+		});
+
+		// Rotación sutil
+		gsap.to("#icon1", {
+			rotate: "+=10",
+			duration: 3.5,
+			ease: "sine.inOut",
+			repeat: -1,
+			yoyo: true,
+			overwrite: "auto"
+		});
+
+		gsap.to("#icon2", {
+			rotate: "-=10",
+			duration: 3.5,
+			ease: "sine.inOut",
+			repeat: -1,
+			yoyo: true,
+			overwrite: "auto",
+			delay: 1.75
+		});
+	}
+
 	const splitTextElements = (selector: any, type = "words,chars", addFirstChar = false) => {
     const elements = document.querySelectorAll(selector);
 
@@ -148,6 +195,7 @@ import EmailIcon from '../assets/icons/mail.svg';
   splitTextElements(".outro-title h1", "chars", true);
   splitTextElements(".tag p", "words");
 
+	// set para la animación de las letras del título "Construyendo" y la palabra subrayada "Interfaces"
 	const buildingWord = new SplitText("#building-word", { type: "chars" });
 	gsap.set(buildingWord.chars, { 
 		yPercent: -100,
@@ -157,6 +205,12 @@ import EmailIcon from '../assets/icons/mail.svg';
 		y: "-100%",
 		opacity: 0
 	})
+
+	// set para los iconos flotantes
+	gsap.set(".floating-icon", {
+		opacity: 0,
+		scale: 0,
+	});
 
 	const isMobile = window.innerWidth <= 1000;
 
@@ -308,5 +362,16 @@ import EmailIcon from '../assets/icons/mail.svg';
 			duration: 0.7
 		},
 		5.80
+	).to(
+		".floating-icon",
+		{
+			opacity: 1,
+			scale: 1,
+			duration: 0.6,
+			ease: "back.out(1.7)",
+			stagger: 0.1,
+			onComplete: iniciarFlotacionIconos 
+		}, 
+		"<0.2" // Empieza 0.2s *después* de que empiecen las imágenes
 	);
 </script>
