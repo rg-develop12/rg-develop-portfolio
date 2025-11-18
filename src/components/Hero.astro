@@ -10,7 +10,7 @@ import BlobShape from '../components/BlobShape.astro';
   <BlobShape color="#fde68a" size={100} shape="shape-1" title="Blob shape 2"
   className='absolute right-1 bottom-24 sm:right-20 block sm:hidden' />
   
-  <div class="card w-[90%] max-w-5xl flex flex-col items-center py-8 mx-auto">
+  <div class="card w-[90%] max-w-5xl flex flex-col items-center py-10 mx-auto rounded-xl">
     <div class="flex items-center gap-2 text-base sm:text-lg text-[#1A1A2E] font-semibold">
       <span>Web</span>
       <span aria-hidden="true" class="opacity-80">·</span>
@@ -19,7 +19,7 @@ import BlobShape from '../components/BlobShape.astro';
       <span>Desktop</span>
     </div>
 
-    <h2 class="text-[#1A1A2E] my-5 relative">
+    <h2 class="text-[#1A1A2E] my-2 relative">
       <div class="absolute left-2 sm:left-20 -top-5 text-3xl rotate-12 floating-icon" id="icon1">🚧</div>
       <div class="absolute -right-1 sm:right-24 bottom-5 text-3xl -rotate-12 floating-icon" id="icon2">🧑🏻‍💻</div>
       <span id="building-word">Construyendo</span>
@@ -36,11 +36,22 @@ import BlobShape from '../components/BlobShape.astro';
             <span class="wipe-overlay">Código</span>
         </span>
       </span>
-    </h2>
+		</h2>
 
-    <p class="text-[#1A1A2E] text-base sm:text-lg text-center max-w-2xl">
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque itaque et aspernatur aliquid, blanditiis quo dolore tempore obcaecati cupiditate aliquam voluptatum optio placeat unde quisquam est, consequuntur nesciunt necessitatibus ducimus?
-    </p>
+		<!-- Selector de audiencia: Todos / Reclutadores / PMs / Devs / Clientes -->
+		<div class="audience-selector mt-2 flex flex-col items-center w-full">
+			<div class="options flex gap-2 text-sm sm:text-base text-[#1A1A2E]/70" role="tablist" aria-label="Selector de audiencia">
+				<button class="audience-btn px-3 py-1 rounded-full transition-colors duration-150 text-sm sm:text-base" data-audience="all" aria-pressed="true">Todos</button>
+				<button class="audience-btn px-3 py-1 rounded-full transition-colors duration-150 text-sm sm:text-base" data-audience="recruiters">Reclutadores</button>
+				<button class="audience-btn px-3 py-1 rounded-full transition-colors duration-150 text-sm sm:text-base" data-audience="pms">PMs</button>
+				<button class="audience-btn px-3 py-1 rounded-full transition-colors duration-150 text-sm sm:text-base" data-audience="devs">Devs</button>
+				<button class="audience-btn px-3 py-1 rounded-full transition-colors duration-150 text-sm sm:text-base" data-audience="clients">Clientes</button>
+			</div>
+
+			<div id="audience-content" class="mt-3 text-center text-sm sm:text-lg max-w-2xl">
+				¡Hola! Soy desarrolador web que crea soluciones digitales efectivas atraves herramientas modernas y buenas prácticas.
+			</div>
+		</div>
   </div>
 
   <div class="custom-shape-divider-bottom-1763342963">
@@ -61,7 +72,7 @@ import BlobShape from '../components/BlobShape.astro';
     overflow: hidden;
     line-height: 0;
     transform: rotate(180deg);
-}
+  }
 
 	.custom-shape-divider-bottom-1763342963 svg {
 		position: relative;
@@ -77,14 +88,14 @@ import BlobShape from '../components/BlobShape.astro';
 </style>
 
 <script>
-  import gsap from 'gsap';
+	import gsap from 'gsap';
 	import { CustomEase } from 'gsap/CustomEase';
 	import { SplitText } from 'gsap/SplitText';
 
-  gsap.registerPlugin(CustomEase, SplitText);
+	gsap.registerPlugin(CustomEase, SplitText);
 	CustomEase.create("hop", ".8, 0, .3, 1");
 
-  function iniciarFlotacionIconos() {
+  function initFloatingIcons() {
 		// Flotación arriba/abajo
 		gsap.to(".floating-icon", {
 			y: 10, // Menos desplazamiento para ser más sutil
@@ -120,6 +131,65 @@ import BlobShape from '../components/BlobShape.astro';
 		});
 	}
 
+	function audienceTextAnimation() {
+		gsap.fromTo("#audience-content", 
+			{
+				opacity: 0, 
+				y: -10
+			},
+			{
+				opacity: 1, 
+				y: 0, 
+				duration: 0.3,
+				ease: "power2.out"
+			}
+		);
+  }
+
+  const audienceTexts = {
+    all: `¡Hola! Soy un desarrollador web y me apasiona crear soluciones digitales efectivas. Diseño y construyo desde interfaces dinámicas y animadas hasta aplicaciones simples, fluidas y funcionales que resuelven necesidades reales.`,
+    recruiters: `¿Buscas talento? Con +5 años de experiencia, me especializo en frontend web, móvil y escritorio. Puedo crear desde interfaces con animaciones llamativas hasta aplicaciones simples, limpias y completamente funcionales.`,
+    pms: `¿Cómo voy?👀 Trabajo para que tus ideas lleguen a producción con claridad y sin fricción. Me especializo en crear interfaces que combinan buena experiencia de usuario, rendimiento y una implementación frontend sólida.`,
+    devs: `function getMessage() { return 'A parte de conocer lenguajes de programación, frameworks e integración de APIs, también me intereso en buenas prácticas, rendimiento y experiencia de usuario.' }; console.log(getMessage());`,
+    clients: `¿Tienes una idea en mente? Yo me encargo de ayudarte a transformarla en una interfaz usable y confiable. Trabajo contigo para entender tus necesidades y crear soluciones digitales que realmente funcionen para ti y tus usuarios.`,
+  };
+
+  function initAudienceSelector() {
+    const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>('.audience-btn'));
+    const content = document.getElementById('audience-content');
+    if(!content || buttons.length === 0) return;
+
+    function setActive(audience: string | undefined) {
+      if (!content) return;
+
+      buttons.forEach(b=>{
+        const isActive = b.dataset.audience === audience;
+        b.classList.toggle('bg-[#e9e7ff]', isActive);
+        b.classList.toggle('text-[#1A1A2E]', isActive);
+        b.setAttribute('aria-pressed', String(isActive));
+      });
+
+      content.textContent = audienceTexts[audience as keyof typeof audienceTexts] || audienceTexts.all;
+      audienceTextAnimation();
+    }
+
+    buttons.forEach(b=>{
+      b.addEventListener('click', ()=> setActive(b.dataset.audience));
+      b.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setActive(b.dataset.audience); }
+      });
+    });
+
+    // Estado inicial
+    setActive('all');
+  }
+
+  // Inicializar al cargar el DOM
+  if (typeof window !== 'undefined'){
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initAudienceSelector);
+    else initAudienceSelector();
+  }
+
   // set para la animación de las letras del título "Construyendo" y la palabra subrayada "Interfaces"
 	const buildingWord = new SplitText("#building-word", { type: "chars" });
 	gsap.set(buildingWord.chars, { 
@@ -138,7 +208,6 @@ import BlobShape from '../components/BlobShape.astro';
 	});
 
   const tl = gsap.timeline({ defaults: { ease: "hop" } });
-	const tags = gsap.utils.toArray<HTMLElement>(".tag");
 
   tl.to(
 		".page-reveal .card",
@@ -197,8 +266,8 @@ import BlobShape from '../components/BlobShape.astro';
 			duration: 0.6,
 			ease: "back.out(1.7)",
 			stagger: 0.1,
-			onComplete: iniciarFlotacionIconos 
+			onComplete: initFloatingIcons 
 		}, 
 		"<0.2" // Empieza 0.2s *después* de que empiecen las imágenes
-	)
+	);
 </script>
