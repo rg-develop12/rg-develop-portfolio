@@ -1,0 +1,115 @@
+---
+import BlobShape from '../components/BlobShape.astro';
+
+// información de experiencia profesional
+const experiences = [
+  {
+    position: "Ingeniero de Frontend",
+    company: "Bluemedical",
+    duration: "2022 - Presente",
+    description: "Encargado del mantenimiento y desarrollo de aplicaciones web orientadas a clientes y plataformas de backoffice, creando nuevas funcionalidades y sistemas que optimizan la gestión de servicios médicos y seguros.",
+    cardColor: "#DFC8FD"
+  },
+  {
+    position: "Desarrollador Frontend",
+    company: "Publimovil S.A de C.V",
+    duration: "2021 - 2022",
+    description: "Me encargué de mantener y optimizar la plataforma web de renta de vallas publicitarias de la empresa y creé interfaces interactivas para campañas publicitarias.",
+    cardColor: "#FDECF5"  
+  },
+  {
+    position: "Programador Junior - Soporte Técnico",
+    company: "Telefónica El Salvador",
+    duration: "2020 - 2021",
+    description: "Creé y mantuve funcionalidades internas para el equipo de soporte, incorporando nuevas opciones según requerimientos, resolviendo incidencias en sistemas existentes y optimizando procesos repetitivos para mejorar la eficiencia operativa.",
+    cardColor: "#FEFACE"
+  }
+];
+---
+
+<section id="experience" class="w-full bg-white py-10 min-h-screen">
+  <h1 class="text-center text-5xl">
+    Mi
+    <span class="wipe-wrapper-experience">
+      Trayectoria
+      <span class="wipe-overlay-experience">Trayectoria</span>
+    </span>
+  </h1>
+
+  <div class="container mx-auto mt-10 relative min-h-screen">
+    <!-- Creamos una línea de tiempo que se curva -->
+    <svg class="w-full" id="curved-path" width="1530" height="800" viewBox="0 0 1530 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M764.847 20.0002L764.847 179" stroke="#D4D4D4" stroke-width="33"/>
+      <path d="M764.847 179C764.847 200.372 780.212 213 827.847 213" stroke="#D4D4D4" stroke-width="33"/>
+      <path d="M823.847 213C823.847 213 1379.61 213.058 1455.63 213C1531.65 212.943 1524.09 345.941 1455.63 346" stroke="#D4D4D4" stroke-width="33"/>
+      <path d="M1457.85 346H72.8466" stroke="#D4D4D4" stroke-width="33"/>
+      <path d="M76.8466 346C6.29112 346.619 -4.40989 482.599 76.8466 481.998" stroke="#D4D4D4" stroke-width="33"/>
+      <path d="M72.8466 482L1453.85 482" stroke="#D4D4D4" stroke-width="33"/>
+      <path d="M1453.85 482C1529.28 482 1527.74 616 1453.85 616" stroke="#D4D4D4" stroke-width="33"/>
+      <path d="M1457.85 616L814.847 616" stroke="#D4D4D4" stroke-width="33"/>
+      <path d="M817.847 616C786.047 616 764.847 630.3 764.847 668" stroke="#D4D4D4" stroke-width="33"/>
+      <path d="M764.157 668.077L764.601 770" stroke="#D4D4D4" stroke-width="33"/>
+      <path d="M725.847 732L765.847 769L805.847 732" stroke="#D4D4D4" stroke-width="33"/>
+    </svg>
+  </div>
+</section>
+
+<style>
+  #curved-path path {
+    stroke-dasharray: 0;
+    stroke-dashoffset: 0; 
+    transition: none;
+  }
+</style>
+
+<script>
+  import gsap from 'gsap';
+	import { CustomEase } from 'gsap/CustomEase';
+	import { SplitText } from 'gsap/SplitText';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(CustomEase, SplitText, ScrollTrigger);
+	CustomEase.create("hop", ".8, 0, .3, 1");
+
+  const paths = document.querySelectorAll("#curved-path path") as NodeListOf<SVGPathElement>;
+
+  const experienceTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#experience",
+      start: "top 80%",
+      toggleActions: "play reverse play reverse"
+    }
+  });
+
+  experienceTl.to(
+    ".wipe-overlay-experience",
+    {
+      width: "100%",
+      duration: 0.7
+    }
+  )
+
+   
+  if (paths.length > 0) {
+    paths.forEach((path, index) => {
+      const pathLength = path.getTotalLength();
+      
+      // Establecemos el estado inicial (oculto) para CADA path
+      gsap.set(path, {
+          strokeDasharray: pathLength,
+          strokeDashoffset: pathLength,
+          opacity: 1
+      });
+      
+      experienceTl.to(
+      path,
+        {
+          strokeDashoffset: 0,
+          duration: pathLength / 500,
+          ease: "none"
+        },
+        index === 0 ? 0 : ">" // Comienza 0.5s antes de que termine la animación anterior
+      );
+    });
+  }
+</script>
