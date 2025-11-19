@@ -5,6 +5,7 @@ interface Props {
   shape?: 'shape-1' | 'shape-2' | 'shape-3' | 'shape-4';
   title?: string;
   className?: string;
+  applyBlur?: boolean;
 }
 
 const {
@@ -12,7 +13,8 @@ const {
   size = 160,
   shape = 'shape-1',
   title = 'Blob shape',
-  className = ''
+  className = '',
+  applyBlur = false
 } = Astro.props as Props;
 
 const sizeAttr = typeof size === 'number' ? `${size}` : size;
@@ -51,6 +53,6 @@ const filterId = `blob-blur-${Math.random().toString(36).slice(2,9)}`;
     </filter>
   </defs>
   <g transform="translate(100 100) scale(1.4)">
-    <path d={selectedPath} fill={color} />
+    <path d={selectedPath} fill={color} style={applyBlur ? 'filter: blur(40px);' : undefined} />
   </g>
 </svg>
