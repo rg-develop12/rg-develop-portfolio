@@ -33,13 +33,16 @@ body {
 }
 
 /* Estilos para animación de entrada */
-.intro-title h1, .outro-title h1 {
+.intro-title h1,
+.outro-title h1 {
   font-size: 6rem;
   font-weight: bold;
   line-height: 1;
 }
 
-.preloader, .split-overlay, .tags-overlay {
+.preloader,
+.split-overlay,
+.tags-overlay {
   position: fixed;
   width: 100vw;
   height: 100dvh;
@@ -49,12 +52,14 @@ body {
   gap: 1rem;
 }
 
-.preloader, .split-overlay {
+.preloader,
+.split-overlay {
   background-color: #0a0a0a;
   color: #fff;
 }
 
-.preloader, .tags-overlay {
+.preloader,
+.tags-overlay {
   z-index: 2;
 }
 
@@ -100,17 +105,22 @@ body {
   line-height: 1.3;
 }
 
-.intro-title .char, .outro-title .char, .card .char {
+.intro-title .char,
+.outro-title .char,
+.card .char {
   position: relative;
   display: inline-block;
   overflow: hidden;
 }
 
-.intro-title .char, .outro-title .char {
+.intro-title .char,
+.outro-title .char {
   margin-top: 0.75rem;
-} 
+}
 
-.intro-title .char span, .outro-title .char span, .tag .word {
+.intro-title .char span,
+.outro-title .char span,
+.tag .word {
   position: relative;
   display: inline-block;
   transform: translateY(-100%);
@@ -131,13 +141,16 @@ body {
   z-index: 2;
 }
 
-nav, footer {
+nav,
+footer {
   z-index: 2;
   color: #fff;
 }
 
 @media (max-width: 1000px) {
-  .intro-title h1, .outro-title h1 {
+
+  .intro-title h1,
+  .outro-title h1 {
     font-size: 2.5rem;
   }
 
@@ -166,13 +179,13 @@ nav, footer {
   transform-origin: left;
 }
 
-.wipe-wrapper, .wipe-wrapper-experience {
+.wipe-wrapper {
   position: relative;
   display: inline-block;
-  color: #1A1A2E; 
+  color: #1A1A2E;
 }
 
-.wipe-overlay, .wipe-overlay-experience {
+.wipe-overlay {
   position: absolute;
   left: 0;
   top: 0;
@@ -188,7 +201,7 @@ nav, footer {
 }
 
 .floating-icon {
-    opacity: 0;
-    transform: scale(0);
-    transform-origin: center center; 
+  opacity: 0;
+  transform: scale(0);
+  transform-origin: center center;
 }

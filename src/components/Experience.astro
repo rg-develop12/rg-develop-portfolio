@@ -1,5 +1,5 @@
 ---
-import BlobShape from '../components/BlobShape.astro';
+import BlobShape from "../components/BlobShape.astro";
 
 // información de experiencia profesional
 const experiences = [
@@ -8,108 +8,296 @@ const experiences = [
     company: "Bluemedical",
     duration: "2022 - Presente",
     description: "Encargado del mantenimiento y desarrollo de aplicaciones web orientadas a clientes y plataformas de backoffice, creando nuevas funcionalidades y sistemas que optimizan la gestión de servicios médicos y seguros.",
-    cardColor: "#DFC8FD"
+    cardColor: "#DFC8FD",
   },
   {
     position: "Desarrollador Frontend",
     company: "Publimovil S.A de C.V",
     duration: "2021 - 2022",
     description: "Me encargué de mantener y optimizar la plataforma web de renta de vallas publicitarias de la empresa y creé interfaces interactivas para campañas publicitarias.",
-    cardColor: "#FDECF5"  
+    cardColor: "#FDECF5",
   },
   {
     position: "Programador Junior - Soporte Técnico",
     company: "Telefónica El Salvador",
     duration: "2020 - 2021",
     description: "Creé y mantuve funcionalidades internas para el equipo de soporte, incorporando nuevas opciones según requerimientos, resolviendo incidencias en sistemas existentes y optimizando procesos repetitivos para mejorar la eficiencia operativa.",
-    cardColor: "#FEFACE"
-  }
+    cardColor: "#FEFACE",
+  },
 ];
 ---
 
-<section id="experience" class="w-full bg-white py-10 min-h-screen">
-  <h1 class="text-center text-5xl">
+<section id="experience" class="w-full bg-white relative overflow-hidden">
+  <h1 class="text-center text-5xl relative mt-10">
     Mi
     <span class="wipe-wrapper-experience">
       Trayectoria
       <span class="wipe-overlay-experience">Trayectoria</span>
     </span>
   </h1>
+  <p class="text-center text-base sm:text-lg mb-20 relative">
+    Un recorrido de crecimiento, aprendizaje y logros constantes
+  </p>
 
-  <div class="container mx-auto mt-10 relative min-h-screen">
-    <!-- Creamos una línea de tiempo que se curva -->
-    <svg class="w-full" id="curved-path" width="1530" height="800" viewBox="0 0 1530 800" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M764.847 20.0002L764.847 179" stroke="#D4D4D4" stroke-width="33"/>
-      <path d="M764.847 179C764.847 200.372 780.212 213 827.847 213" stroke="#D4D4D4" stroke-width="33"/>
-      <path d="M823.847 213C823.847 213 1379.61 213.058 1455.63 213C1531.65 212.943 1524.09 345.941 1455.63 346" stroke="#D4D4D4" stroke-width="33"/>
-      <path d="M1457.85 346H72.8466" stroke="#D4D4D4" stroke-width="33"/>
-      <path d="M76.8466 346C6.29112 346.619 -4.40989 482.599 76.8466 481.998" stroke="#D4D4D4" stroke-width="33"/>
-      <path d="M72.8466 482L1453.85 482" stroke="#D4D4D4" stroke-width="33"/>
-      <path d="M1453.85 482C1529.28 482 1527.74 616 1453.85 616" stroke="#D4D4D4" stroke-width="33"/>
-      <path d="M1457.85 616L814.847 616" stroke="#D4D4D4" stroke-width="33"/>
-      <path d="M817.847 616C786.047 616 764.847 630.3 764.847 668" stroke="#D4D4D4" stroke-width="33"/>
-      <path d="M764.157 668.077L764.601 770" stroke="#D4D4D4" stroke-width="33"/>
-      <path d="M725.847 732L765.847 769L805.847 732" stroke="#D4D4D4" stroke-width="33"/>
+  <div class="container mx-auto relative pb-24 sm:pb-56">
+    <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+      <svg class="w-full h-full overflow-visible" id="snake-svg">
+        <defs>
+          <marker
+            id="arrowhead"
+            markerWidth="7"
+            markerHeight="7"
+            refX="0"
+            refY="3.5"
+            orient="auto"
+          >
+            <polygon points="0 1, 4 3.5, 0 6" fill="#D4D4D4"></polygon>
+          </marker>
+        </defs>
+        <path
+          id="snake-path"
+          d=""
+          fill="none"
+          stroke="#D4D4D4"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+    </div>
+
+    <div
+      class="relative flex flex-col items-center gap-24 mx-5 sm:mx-0"
+      id="cards-container"
+    >
+      {
+        experiences.map((exp) => (
+          <div
+            class="experience-card w-full max-w-md p-8 rounded-3xl relative"
+            style={`background-color: ${exp.cardColor};`}
+          >
+            <h3 class="text-2xl font-bold mb-1">{exp.position}</h3>
+            <h4 class="text-lg font-semibold text-gray-700 mb-2">
+              {exp.company}
+            </h4>
+            <p class="text-sm text-gray-500 mb-4 font-mono">{exp.duration}</p>
+            <p class="text-gray-700 leading-relaxed">{exp.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="custom-shape-divider-bottom-1763617902">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
     </svg>
   </div>
 </section>
 
 <style>
-  #curved-path path {
-    stroke-dasharray: 0;
-    stroke-dashoffset: 0; 
-    transition: none;
+  .wipe-wrapper-experience {
+    position: relative;
+    display: inline-block;
+    color: #d1d5db;
+  }
+
+  .wipe-overlay-experience {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    overflow: hidden;
+    color: #000;
+    white-space: nowrap;
+  }
+
+  .custom-shape-divider-bottom-1763617902 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+  }
+
+  .custom-shape-divider-bottom-1763617902 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 124px;
+  }
+
+  .custom-shape-divider-bottom-1763617902 .shape-fill {
+    fill: #EBF0F9;
   }
 </style>
 
 <script>
-  import gsap from 'gsap';
-	import { CustomEase } from 'gsap/CustomEase';
-	import { SplitText } from 'gsap/SplitText';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-  gsap.registerPlugin(CustomEase, SplitText, ScrollTrigger);
-	CustomEase.create("hop", ".8, 0, .3, 1");
+  gsap.registerPlugin(ScrollTrigger);
 
-  const paths = document.querySelectorAll("#curved-path path") as NodeListOf<SVGPathElement>;
+  const svg = document.getElementById("snake-svg") as unknown as SVGElement;
+  const path = document.getElementById("snake-path") as unknown as SVGPathElement;
+  const cardsContainer = document.getElementById("cards-container") as HTMLElement;
+  const cards = document.querySelectorAll(".experience-card") as NodeListOf<HTMLElement>;
 
-  const experienceTl = gsap.timeline({
+  function drawPath() {
+    if (!svg || !path || !cardsContainer || cards.length === 0) return;
+
+    const isMobile = window.innerWidth < 768;
+    const containerRect = cardsContainer.getBoundingClientRect();
+    const svgRect = svg.getBoundingClientRect();
+
+    if (isMobile) {
+      const startX = svgRect.width / 2;
+      const startY = 0;
+      const endY = containerRect.height + 40;
+
+      const d = `M ${startX} ${startY} L ${startX} ${endY}`;
+
+      path.setAttribute("d", d);
+      path.setAttribute("marker-end", "url(#arrowhead)");
+      path.setAttribute("stroke-width", "6");
+    } else {
+      path.setAttribute("stroke-width", "33");
+      path.setAttribute("stroke-linecap", "round");
+      path.setAttribute("marker-end", "url(#arrowhead)"); // La flecha al final del path debe ser visible
+
+      let d = "";
+      const gap = 60; // Distancia desde el lado de la tarjeta
+      const cornerRadius = 30; // Radio para los bordes redondeados
+
+      cards.forEach((card, index) => {
+        const cardRect = card.getBoundingClientRect();
+
+        // Coordenadas relativas al SVG
+        const cardTop = cardRect.top - svgRect.top;
+        const cardBottom = cardRect.bottom - svgRect.top;
+        const cardLeft = cardRect.left - svgRect.left;
+        const cardRight = cardRect.right - svgRect.left;
+
+        const isLeft = index % 2 === 0; // Determinar lado: 0 (Primera) = Left, 1 (Segunda) = Right, 2 (Tercera) = Left...
+        const lineX = isLeft ? cardLeft - gap : cardRight + gap; // Posición X de la línea vertical
+
+        // Punto de inicio para este segmento
+        const startY = cardTop;
+        const endY = cardBottom;
+
+        if (index === 0) {
+          d += `M ${lineX} ${startY}`;
+        }
+
+        // Dibujar línea vertical junto a la tarjeta
+        d += ` L ${lineX} ${endY}`;
+
+        // Si no es la última tarjeta, conectar con la siguiente
+        if (index < cards.length - 1) {
+          const nextCard = cards[index + 1];
+          const nextCardRect = nextCard.getBoundingClientRect();
+          const nextCardTop = nextCardRect.top - svgRect.top;
+          const nextCardLeft = nextCardRect.left - svgRect.left;
+          const nextCardRight = nextCardRect.right - svgRect.left;
+
+          const nextIsLeft = (index + 1) % 2 === 0;
+          const nextLineX = nextIsLeft ? nextCardLeft - gap : nextCardRight + gap;
+
+          // Calcular punto medio para la conexión horizontal
+          const verticalGap = nextCardTop - endY;
+          const midY = endY + verticalGap / 2;
+
+          // 1. Ir hacia abajo hasta el inicio de la curva
+          d += ` L ${lineX} ${midY - cornerRadius}`;
+
+          // 2. Curva 1 (Vertical a Horizontal)
+          // Determinar dirección de la línea horizontal
+          const directionX = nextLineX > lineX ? 1 : -1;
+          d += ` Q ${lineX} ${midY}, ${lineX + cornerRadius * directionX} ${midY}`;
+
+          // 3. Línea horizontal
+          d += ` L ${nextLineX - cornerRadius * directionX} ${midY}`;
+
+          // 4. Curva 2 (Horizontal a Vertical)
+          d += ` Q ${nextLineX} ${midY}, ${nextLineX} ${midY + cornerRadius}`;
+
+          // 5. Continuar hacia abajo hasta la siguiente tarjeta
+          d += ` L ${nextLineX} ${nextCardTop}`;
+        } else {
+          // Lógica de la última card
+          // Curva hacia el centro y apuntar hacia abajo
+          const centerX = svgRect.width / 2;
+          const finishY = endY + 40; // Establecemos cuanto bajar antes de girar hacia el centro
+
+          // 1. Continuar hacia abajo un poco
+          d += ` L ${lineX} ${finishY - cornerRadius}`;
+
+          // 2. Curva hacia el centro
+          const directionToCenter = centerX > lineX ? 1 : -1;
+          d += ` Q ${lineX} ${finishY}, ${lineX + cornerRadius * directionToCenter} ${finishY}`;
+
+          // 3. Línea horizontal hacia el centro
+          d += ` L ${centerX - cornerRadius * directionToCenter} ${finishY}`;
+
+          // 4. Curva hacia abajo en el centro
+          d += ` Q ${centerX} ${finishY}, ${centerX} ${finishY + cornerRadius}`;
+
+          // 5. Pequeña cola hacia abajo (la flecha estará aquí)
+          d += ` L ${centerX} ${finishY + cornerRadius + 20}`;
+        }
+      });
+
+      path.setAttribute("d", d);
+    }
+
+    animatePath();
+  }
+
+  function animatePath() {
+    const pathLength = path.getTotalLength();
+
+    // Reset for animation
+    gsap.set(path, {
+      strokeDasharray: pathLength,
+      strokeDashoffset: pathLength,
+    });
+
+    gsap.to(path, {
+      scrollTrigger: {
+        trigger: "#experience",
+        start: "top 60%",
+        end: "bottom 80%",
+      },
+      strokeDashoffset: 0,
+      ease: "none",
+    });
+  }
+
+  // Redibujamos si el tamaño de la ventana cambia
+  let resizeTimeout: any;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      drawPath();
+      ScrollTrigger.refresh();
+    }, 100);
+  });
+
+  drawPath();
+
+  // Animación del título
+  const titleTl = gsap.timeline({
     scrollTrigger: {
       trigger: "#experience",
       start: "top 80%",
-      toggleActions: "play reverse play reverse"
-    }
+      toggleActions: "play reverse play reverse",
+    },
   });
 
-  experienceTl.to(
-    ".wipe-overlay-experience",
-    {
-      width: "100%",
-      duration: 0.7
-    }
-  )
-
-   
-  if (paths.length > 0) {
-    paths.forEach((path, index) => {
-      const pathLength = path.getTotalLength();
-      
-      // Establecemos el estado inicial (oculto) para CADA path
-      gsap.set(path, {
-          strokeDasharray: pathLength,
-          strokeDashoffset: pathLength,
-          opacity: 1
-      });
-      
-      experienceTl.to(
-      path,
-        {
-          strokeDashoffset: 0,
-          duration: pathLength / 500,
-          ease: "none"
-        },
-        index === 0 ? 0 : ">" // Comienza 0.5s antes de que termine la animación anterior
-      );
-    });
-  }
+  titleTl.to(".wipe-overlay-experience", {
+    width: "100%",
+    duration: 1.5,
+  });
 </script>

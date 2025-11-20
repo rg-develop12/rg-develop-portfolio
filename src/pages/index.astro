@@ -1,8 +1,8 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import Experience from '../components/Experience.astro';
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Experience from "../components/Experience.astro";
 ---
 
 <Layout>
@@ -25,9 +25,13 @@ import Experience from '../components/Experience.astro';
 	</div>
 
 	<div class="tags-overlay">
-		<div class="tag tag-1"><p class="text-sm font-semibold">DESARROLLADOR</p></div>
+		<div class="tag tag-1">
+			<p class="text-sm font-semibold">DESARROLLADOR</p>
+		</div>
 		<div class="tag tag-2"><p class="text-sm font-semibold">ENTUSIASTA</p></div>
-		<div class="tag tag-3"><p class="text-sm font-semibold">COLABORADOR</p></div>
+		<div class="tag tag-3">
+			<p class="text-sm font-semibold">COLABORADOR</p>
+		</div>
 	</div>
 
 	<div class="page-reveal bg-[#EEEAF7]">
@@ -37,39 +41,48 @@ import Experience from '../components/Experience.astro';
 
 	<main>
 		<Experience />
+		<section id="test" class="min-h-screen bg-[#EBF0F9]">test section</section>
 	</main>
 </Layout>
 
 <script>
-	import gsap from 'gsap';
-	import { CustomEase } from 'gsap/CustomEase';
-	import { SplitText } from 'gsap/SplitText';
+	import gsap from "gsap";
+	import { CustomEase } from "gsap/CustomEase";
+	import { SplitText } from "gsap/SplitText";
 
 	gsap.registerPlugin(CustomEase, SplitText);
 	CustomEase.create("hop", ".8, 0, .3, 1");
 
-	const splitTextElements = (selector: any, type = "words,chars", addFirstChar = false) => {
-    const elements = document.querySelectorAll(selector);
+	const splitTextElements = (
+		selector: any,
+		type = "words,chars",
+		addFirstChar = false,
+	) => {
+		const elements = document.querySelectorAll(selector);
 
-    elements.forEach((element) => {
-      const splitText = new SplitText(element, { type: type, wordsClass: "word", charsClass: "char" });
+		elements.forEach((element) => {
+			const splitText = new SplitText(element, {
+				type: type,
+				wordsClass: "word",
+				charsClass: "char",
+			});
 
-      if (type.includes("chars")) {
-        splitText.chars.forEach((char: any, index: number) => {
-          const originalText = char.textContent;
-          char.innerHTML = `<span>${originalText}</span>`;
+			if (type.includes("chars")) {
+				splitText.chars.forEach((char: any, index: number) => {
+					const originalText = char.textContent;
+					char.innerHTML = `<span>${originalText}</span>`;
 
-          if (addFirstChar && index === 0) {
-            char.classList.add("first-char");
-          }
-        });
-      }
-    });
-  }
+					if (addFirstChar && index === 0) {
+						char.classList.add("first-char");
+					}
+				});
+			}
+		});
+	};
 
 	splitTextElements(".intro-title h1", "chars", true);
-  splitTextElements(".outro-title h1", "chars", true);
-  splitTextElements(".tag p", "words");
+	splitTextElements(".outro-title h1", "chars", true);
+	splitTextElements(".tag p", "words");
 
 	const isMobile = window.innerWidth <= 1000;
 
@@ -80,80 +93,92 @@ import Experience from '../components/Experience.astro';
 	tags.forEach((tag, index) => {
 		tl.to(
 			tag.querySelectorAll("p .word"),
-			{ 
+			{
 				y: "0%",
-				duration: 0.6
+				duration: 0.6,
 			},
-			0.2 + index * 0.1
+			0.2 + index * 0.1,
 		);
 	});
 
 	// Animación para el título del prelaoder
 	tl.to(
-		[".preloader .intro-title .char span", ".preloader .outro-title .char span"],
+		[
+			".preloader .intro-title .char span",
+			".preloader .outro-title .char span",
+		],
 		{
 			y: "0%",
 			duration: 0.4,
-			stagger: 0.05
+			stagger: 0.05,
 		},
-		0.2
-	).to(
-		[".preloader .intro-title .char:not(.first-char) span", ".preloader .outro-title .char:not(.first-char) span"],
-		{
-			y: "100%",
-			duration: 0.4,
-			stagger: 0.05
-		},
-		1.3
-	).to(
-		".preloader .intro-title .first-char",
-		{
-			x: isMobile ? "9rem" : "20.25rem",
-			fontSize: isMobile ? "3rem" : "8rem",
-			duration: 0.7
-		},
-		2
-	).to(
-		".preloader .outro-title .first-char",
-		{
-			x: isMobile ? "0.5rem" : "1.35rem",
-			y: "15%",
-			fontSize: isMobile ? "3rem" : "8rem",
-			duration: 0.7
-		},
-		2
-	).to(
-		".preloader .intro-title .first-char",
-		{
-			y: "-100%",
-			duration: 0.3,
-		},
-		2.7
-	).to(
-		".preloader .outro-title .first-char",
-		{
-			y: "-85%",
-			duration: 0.3,
-		},
-		2.7
-	).to(
-		".page-reveal",
-		{
-			clipPath: "polygon(0 48%, 100% 48%, 100% 52%, 0 52%)",
-			duration: 0.7,
-		},
-		3.1
-	);
+		0.2,
+	)
+		.to(
+			[
+				".preloader .intro-title .char:not(.first-char) span",
+				".preloader .outro-title .char:not(.first-char) span",
+			],
+			{
+				y: "100%",
+				duration: 0.4,
+				stagger: 0.05,
+			},
+			1.3,
+		)
+		.to(
+			".preloader .intro-title .first-char",
+			{
+				x: isMobile ? "9rem" : "20.25rem",
+				fontSize: isMobile ? "3rem" : "8rem",
+				duration: 0.7,
+			},
+			2,
+		)
+		.to(
+			".preloader .outro-title .first-char",
+			{
+				x: isMobile ? "0.5rem" : "1.35rem",
+				y: "15%",
+				fontSize: isMobile ? "3rem" : "8rem",
+				duration: 0.7,
+			},
+			2,
+		)
+		.to(
+			".preloader .intro-title .first-char",
+			{
+				y: "-100%",
+				duration: 0.3,
+			},
+			2.7,
+		)
+		.to(
+			".preloader .outro-title .first-char",
+			{
+				y: "-85%",
+				duration: 0.3,
+			},
+			2.7,
+		)
+		.to(
+			".page-reveal",
+			{
+				clipPath: "polygon(0 48%, 100% 48%, 100% 52%, 0 52%)",
+				duration: 0.7,
+			},
+			3.1,
+		);
 
 	// Animación para las tags saliendo
 	tags.forEach((tag, index) => {
 		tl.to(
 			tag.querySelectorAll("p .word"),
-			{ 
+			{
 				y: "100%",
-				duration: 0.3
+				duration: 0.3,
 			},
-			3.3 + index * 0.1
+			3.3 + index * 0.1,
 		);
 	});
 
@@ -164,13 +189,13 @@ import Experience from '../components/Experience.astro';
 			yPercent: (i) => (i === 0 ? -100 : 100),
 			duration: 1,
 		},
-		4
+		4,
 	).to(
 		".page-reveal",
 		{
 			clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
 			duration: 0.7,
 		},
-		4.2
+		4.2,
 	);
 </script>
