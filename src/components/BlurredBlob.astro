@@ -1,0 +1,55 @@
+---
+interface Props {
+  color?: string;
+  size?: number | string;
+  className?: string;
+  shapeStyle?: 'style-1' | 'style-2';
+}
+
+const {
+  color = '#6C5CE7',
+  size = 200,
+  className = '',
+  shapeStyle = 'style-1'
+} = Astro.props as Props;
+
+const sizePx = typeof size === 'number' ? `${size}px` : size;
+
+const shapeStyles = {
+  'style-1': '30% 70% 70% 30% / 30% 30% 70% 70%',
+  'style-2': '50% 50% 30% 70% / 70% 30% 70% 30%',
+};
+const borderRadius = shapeStyles[shapeStyle] || shapeStyles['style-1'];
+
+const dynamicStyle = {
+  width: sizePx,
+  height: sizePx,
+  backgroundColor: color,
+  borderRadius: borderRadius,
+  filter: 'blur(40px)',
+  opacity: 0.4,
+};
+
+const animationClass = 'animate-blob-shape';
+---
+
+<div
+  class:list={['absolute', className, animationClass]}
+  style={dynamicStyle}
+  aria-hidden="true"
+></div>
+
+<style>
+  @keyframes blob-animation-1 {
+    0%, 100% {
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    }
+    50% {
+      border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+    }
+  }
+
+  .animate-blob-shape {
+    animation: blob-animation-1 8s ease-in-out infinite alternate;
+  }
+</style>
