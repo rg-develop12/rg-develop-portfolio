@@ -319,4 +319,29 @@ const experiences = [
     width: "100%",
     duration: 1.5,
   });
+
+  function animateCards() {
+    cards.forEach((card, index) => {
+      gsap.fromTo(
+        card,
+        {
+          opacity: 0,
+          y: 100,
+        },
+        {
+          scrollTrigger: {
+            trigger: card,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+        }
+      );
+    });
+  }
+
+  animateCards();
 </script>
