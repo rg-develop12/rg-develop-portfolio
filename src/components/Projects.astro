@@ -1,0 +1,395 @@
+---
+import { Image } from "astro:assets";
+import BlurredBlob from "./BlurredBlob.astro";
+
+import dreamboard1 from "../assets/images/dreamboard-project/image_presentation_1.png";
+import dreamboard2 from "../assets/images/dreamboard-project/image_presentation_2.png";
+import dreamboard3 from "../assets/images/dreamboard-project/image_presentation_3.png";
+import dreamboard4 from "../assets/images/dreamboard-project/image_presentation_4.png";
+import dreamboard5 from "../assets/images/dreamboard-project/image_presentation_5.png";
+
+import electricidad1 from "../assets/images/electricidad-global-project/image_presentation_1.png";
+import electricidad2 from "../assets/images/electricidad-global-project/image_presentation_2.png";
+import electricidad3 from "../assets/images/electricidad-global-project/image_presentation_3.png";
+import electricidad4 from "../assets/images/electricidad-global-project/image_presentation_4.png";
+import electricidad5 from "../assets/images/electricidad-global-project/image_presentation_5.png";
+import electricidad6 from "../assets/images/electricidad-global-project/image_presentation_6.png";
+import electricidad7 from "../assets/images/electricidad-global-project/image_presentation_7.png";
+
+import color1 from "../assets/images/seleccionar-color-project/image_presentation_1.png";
+import color2 from "../assets/images/seleccionar-color-project/image_presentation_2.png";
+import color3 from "../assets/images/seleccionar-color-project/image_presentation_3.png";
+import color4 from "../assets/images/seleccionar-color-project/image_presentation_4.png";
+
+const projects = [
+  {
+    id: "electricidad-global",
+    title: "Electricidad Global",
+    description: "Aplicación de escritorio solicitado por la empresa Electricidad Global SA de CV para el manejo de empleados, inventarios, planillas y controles de asistencias.",
+    tags: "Electron // Vue.js // Firebase // Tailwind CSS",
+    image: electricidad1,
+    gallery: [electricidad1, electricidad2, electricidad3, electricidad4, electricidad5, electricidad6, electricidad7],
+    features: [
+      "Módulo de empleados",
+      "Control de asistencias",
+      "Manejo de inventario",
+      "Módulo de proyectos",
+      "Generador de planillas y boletas de pago",
+      "Generador de reportes PDF"
+    ]
+  },
+  {
+    id: "dreamboard",
+    title: "Dreamboard",
+    description: "Proyecto que consume el feed público de Flickr para mostrar una galería de imágenes con tres modos de visualización.",
+    tags: "Vue.js // Pinia // Laravel // Tailwind CSS",
+    image: dreamboard1,
+    gallery: [dreamboard1, dreamboard2, dreamboard3, dreamboard4, dreamboard5],
+    features: [
+      "Visualización en modo carta, cuadrícula y mosaico",
+      "Modo oscuro/claro",
+      "Scroll infinito",
+      "Visualización de comentarios",
+      "Búsqueda de imágenes"
+    ]
+  }, 
+  {
+    id: "seleccionar-color",
+    title: "Seleccionar Color",
+    description: "Herramienta que permite identificar el color de la sección seleccionada de una imagen, conversiones Hex, RGB Y HSL y generación de paletas de colores",
+    tags: "Astro.js // Vue.js // Tailwind CSS",
+    image: color1,
+    gallery: [color1, color2, color3, color4],
+    features: [
+      "Cargar imágenes",
+      "Extracción de color del punto seleccionado",
+      "Conversiones Hex, RGB Y HSL",
+      "Generación de paletas de colores"
+    ]
+  }
+];
+---
+
+<section class="py-20 px-5 md:px-8 bg-[#EBF0F9] relative z-1" id="projects">
+  <BlurredBlob color="#AD46FF" size={175} shapeStyle="style-1" className="top-30 right-15 xl:right-30 hidden sm:block" />
+  <BlurredBlob color="#FFF085" size={175} shapeStyle="style-2" className="top-160 left-15 xl:left-30 hidden sm:block" />
+  <BlurredBlob color="#D6B2FF" size={200} shapeStyle="style-1" className="bottom-50 right-15 xl:right-30 hidden sm:block" />
+
+  <h1 class="text-center text-5xl relative text-[#1A1A2E]">
+    <span class="wipe-wrapper-projects">
+      Proyectos
+      <span class="wipe-overlay-projects">Proyectos</span>
+    </span>
+    Destacados
+  </h1>
+  <p class="text-center text-base sm:text-lg mb-20 relative text-[#6B728F] mt-2">
+    Algunos de los proyectos en los que he trabajado recientemente.
+  </p>
+
+  <div class="max-w-7xl mx-auto space-y-20 sm:space-y-32">
+    {projects.map((project, index) => (
+      <div class={`project-card flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8 md:gap-16 items-stretch pointer-events-auto`}>
+        <div
+          class="w-full md:w-1/2 relative group cursor-pointer project-image-container"
+          data-project-id={project.id}
+          data-gallery={JSON.stringify(project.gallery.map(img => img.src))}
+        >
+          <div class="relative overflow-hidden rounded-3xl transform transition-transform duration-500 hover:scale-[1.02]">
+            <Image
+              src={project.image}
+              alt={project.title}
+              class="w-full h-auto object-cover"
+            />
+            <div class="hidden sm:flex absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 items-center justify-center">
+              <div class="bg-white/90 p-4 rounded-full backdrop-blur-sm transform scale-0 group-hover:scale-100 transition-transform duration-300 delay-100">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-900"><path d="M15 3h6v6M14 10l6.1-6.1M9 21H3v-6M10 14l-6.1 6.1"/></svg>
+              </div>
+            </div
+            >
+            <div class="sm:hidden absolute top-4 right-4 bg-white/90 p-3 rounded-full backdrop-blur-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-900"><path d="M15 3h6v6M14 10l6.1-6.1M9 21H3v-6M10 14l-6.1 6.1"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full md:w-1/2 space-y-6">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
+            {project.title}
+          </h2>
+
+          <div class="project-description-container overflow-hidden max-h-24 relative">
+            <p class="text-gray-600 text-lg leading-relaxed">
+              {project.description}
+            </p>
+            <div class="features-list mt-6 hidden opacity-0">
+              <h4 class="font-bold text-gray-900 mb-3">Características:</h4>
+              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {project.features?.map(feature => (
+                  <li class="flex items-center text-gray-600 text-sm">
+                    <span class="w-1.5 h-1.5 bg-indigo-500 rounded-full mr-2"></span>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div class="absolute bottom-0 left-0 w-full h-12 bg-linear-to-t from-[#EBF0F9] to-transparent fade-overlay"></div>
+          </div>
+
+          <button class="read-more-btn text-indigo-600 font-semibold text-sm tracking-wider hover:text-indigo-800 transition-colors flex items-center gap-2 group">
+            LEER MÁS
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-y-1 transition-transform"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+
+          <p class="text-xs font-bold text-gray-400 tracking-[0.2em] uppercase pt-4 border-t border-gray-200">
+            {project.tags}
+          </p>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div id="gallery-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 backdrop-blur-md opacity-0 transition-opacity duration-300 pointer-events-none">
+    <button id="close-gallery" class="absolute top-6 right-6 text-white hover:text-gray-300 transition-colors z-50 cursor-pointer">
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    
+    <div class="w-full h-full flex flex-col justify-center">
+      <div class="relative w-full max-w-7xl mx-auto px-4 md:px-12 flex items-center justify-center h-full md:h-auto">
+        <button id="prev-slide" class="absolute left-2 md:left-0 text-white hover:text-indigo-400 transition-colors p-2 cursor-pointer z-50">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        
+        <div class="w-full aspect-video relative rounded-lg overflow-hidden bg-transparent">
+          <img id="gallery-image" src="" alt="Project Gallery" class="w-full h-full object-contain" />
+        </div>
+
+        <button id="next-slide" class="absolute right-2 md:right-0 text-white hover:text-indigo-400 transition-colors p-2 cursor-pointer z-50">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+    
+    <div class="absolute bottom-8 left-0 w-full flex justify-center gap-2" id="gallery-dots">
+      {/* En agregaremos los dots */}
+    </div>
+  </div>
+</section>
+
+<style>
+  .wipe-wrapper-projects {
+    position: relative;
+    display: inline-block;
+    color: #d1d5db;
+  }
+
+  .wipe-overlay-projects {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    overflow: hidden;
+    color: #F0B100;
+    white-space: nowrap;
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Lógica del read more
+  const readMoreBtns = document.querySelectorAll('.read-more-btn');
+  
+  readMoreBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const container = (e.currentTarget as HTMLElement).previousElementSibling as HTMLElement;
+      const features = container.querySelector('.features-list') as HTMLElement;
+      const fadeOverlay = container.querySelector('.fade-overlay') as HTMLElement;
+      const isExpanded = container.classList.contains('expanded');
+      
+      if (!isExpanded) {
+        features.style.display = 'block';
+        const startHeight = container.offsetHeight;
+        const targetHeight = container.scrollHeight;
+
+        gsap.fromTo(container, 
+          { height: startHeight, maxHeight: 'none' }, 
+          { 
+            height: targetHeight, 
+            duration: 0.6, 
+            ease: "power2.out", 
+            overwrite: true,
+            onComplete: () => {
+              container.style.height = 'auto';
+            }
+          }
+        );
+
+        gsap.to(features, { opacity: 1, duration: 0.4, delay: 0.2 });
+        gsap.to(fadeOverlay, { opacity: 0, duration: 0.3 });
+        (e.currentTarget as HTMLElement).innerHTML = `LEER MENOS <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="rotate-180 transition-transform"><path d="m6 9 6 6 6-6"/></svg>`;
+        container.classList.add('expanded');
+      } else {
+        gsap.to(features, { opacity: 0, duration: 0.6, onComplete: () => { features.style.display = 'none'; } });
+        gsap.to(container, { 
+          height: 96, 
+          duration: 0.6, 
+          ease: "power2.out",
+          overwrite: true,
+          onComplete: () => {
+            gsap.set(container, { clearProps: "height,maxHeight" });
+          }
+        });
+        gsap.to(fadeOverlay, { opacity: 1, duration: 0.1 });
+        (e.currentTarget as HTMLElement).innerHTML = `LEER MÁS <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-y-1 transition-transform"><path d="m6 9 6 6 6-6"/></svg>`;
+        container.classList.remove('expanded');
+      }
+    });
+  });
+
+  // Lógica de la galería
+  const modal = document.getElementById('gallery-modal');
+  const modalImg = document.getElementById('gallery-image') as HTMLImageElement;
+  const closeBtn = document.getElementById('close-gallery');
+  const prevBtn = document.getElementById('prev-slide');
+  const nextBtn = document.getElementById('next-slide');
+  const dotsContainer = document.getElementById('gallery-dots');
+  
+  let currentProjectImages: string[] = [];
+  let currentImageIndex = 0;
+
+  const updateGalleryImage = () => {
+    if (!modalImg || currentProjectImages.length === 0) return;
+    
+    // Fade out
+    gsap.to(modalImg, { opacity: 0, duration: 0.2, onComplete: () => {
+      modalImg.src = currentProjectImages[currentImageIndex];
+      // Fade in
+      gsap.to(modalImg, { opacity: 1, duration: 0.2 });
+    }});
+
+    // Actualización de los puntos
+    if (dotsContainer) {
+      Array.from(dotsContainer.children).forEach((dot, index) => {
+        if (index === currentImageIndex) {
+          dot.classList.add('bg-white', 'scale-125');
+          dot.classList.remove('bg-gray-500');
+        } else {
+          dot.classList.add('bg-gray-500');
+          dot.classList.remove('bg-white', 'scale-125');
+        }
+      });
+    }
+  };
+
+  const openModal = (images: string[]) => {
+    if (!modal || !dotsContainer) return;
+    
+    currentProjectImages = images;
+    currentImageIndex = 0;
+    
+    // Creación de los puntos
+    dotsContainer.innerHTML = '';
+    images.forEach((_, index) => {
+      const dot = document.createElement('button');
+      dot.className = `w-3 h-3 rounded-full transition-all duration-300 ${index === 0 ? 'bg-white scale-125' : 'bg-gray-500'}`;
+      dot.addEventListener('click', (e) => {
+          e.stopPropagation();
+          currentImageIndex = index;
+          updateGalleryImage();
+      });
+      dotsContainer.appendChild(dot);
+    });
+
+    modalImg.src = currentProjectImages[0];
+    modal.classList.remove('hidden');
+    modal.classList.remove('pointer-events-none');
+    setTimeout(() => { // pequeño delay para que se aplique display:block antes de la transición de opacity
+      modal.classList.remove('opacity-0');
+    }, 10);
+  };
+
+  const closeModal = () => {
+    if (!modal) return;
+    modal.classList.add('opacity-0');
+    modal.classList.add('pointer-events-none');
+    setTimeout(() => {
+      modal.classList.add('hidden');
+    }, 300);
+  };
+
+  document.querySelectorAll('.project-image-container').forEach(container => {
+    container.addEventListener('click', () => {
+      const galleryData = container.getAttribute('data-gallery');
+      if (galleryData) {
+        try {
+          const images = JSON.parse(galleryData);
+          openModal(images);
+        } catch (e) {
+          console.error("Error parsing gallery data", e);
+        }
+      }
+    });
+  });
+
+  closeBtn?.addEventListener('click', closeModal);
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  prevBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (currentProjectImages.length > 0) {
+      currentImageIndex = (currentImageIndex - 1 + currentProjectImages.length) % currentProjectImages.length;
+      updateGalleryImage();
+    }
+  });
+
+  nextBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (currentProjectImages.length > 0) {
+      currentImageIndex = (currentImageIndex + 1) % currentProjectImages.length;
+      updateGalleryImage();
+    }
+  });
+
+  // Navegación por teclado
+  document.addEventListener('keydown', (e) => {
+    if (modal && !modal.classList.contains('hidden')) {
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowLeft') prevBtn?.click();
+      if (e.key === 'ArrowRight') nextBtn?.click();
+    }
+  });
+
+  const projectCards = document.querySelectorAll('.project-card');
+  projectCards.forEach((card, i) => {
+    gsap.from(card.querySelectorAll('.project-image-container, .w-full.space-y-6'), {
+      y: 100,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: card,
+        start: "top 80%",
+        once: true
+      }
+    });
+  });
+
+  gsap.to(".wipe-overlay-projects", {
+    width: "100%",
+    duration: 1.5,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: "#projects",
+      start: "top 80%",
+      toggleActions: "play reverse play reverse",
+    }
+  })
+
+</script>
