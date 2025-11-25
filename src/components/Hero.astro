@@ -41,11 +41,10 @@ import BlobShape from '../components/BlobShape.astro';
 		<!-- Selector de audiencia: Todos / Reclutadores / PMs / Devs / Clientes -->
 		<div class="audience-selector mt-2 flex flex-col items-center w-full">
 			<div class="options flex gap-2 text-sm sm:text-base text-[#1A1A2E]/70" role="tablist" aria-label="Selector de audiencia">
-				<button class="audience-btn px-3 py-1 rounded-full transition-colors duration-150 text-sm sm:text-base" data-audience="all" aria-pressed="true">Todos</button>
-				<button class="audience-btn px-3 py-1 rounded-full transition-colors duration-150 text-sm sm:text-base" data-audience="recruiters">Reclutadores</button>
-				<button class="audience-btn px-3 py-1 rounded-full transition-colors duration-150 text-sm sm:text-base" data-audience="pms">PMs</button>
-				<button class="audience-btn px-3 py-1 rounded-full transition-colors duration-150 text-sm sm:text-base" data-audience="devs">Devs</button>
-				<button class="audience-btn px-3 py-1 rounded-full transition-colors duration-150 text-sm sm:text-base" data-audience="clients">Clientes</button>
+				<button class="audience-btn px-3 py-1 rounded-full transition-colors duration-150 text-sm sm:text-base cursor-pointer" data-audience="all" aria-pressed="true">Todos</button>
+				<button class="audience-btn px-3 py-1 rounded-full transition-colors duration-150 text-sm sm:text-base cursor-pointer" data-audience="recruiters">Reclutadores</button>
+				<button class="audience-btn px-3 py-1 rounded-full transition-colors duration-150 text-sm sm:text-base cursor-pointer" data-audience="pms">PMs</button>
+				<button class="audience-btn px-3 py-1 rounded-full transition-colors duration-150 text-sm sm:text-base cursor-pointer" data-audience="devs">Devs</button>
 			</div>
 
 			<div id="audience-content" class="mt-3 text-center text-sm sm:text-lg max-w-2xl">
@@ -151,7 +150,6 @@ import BlobShape from '../components/BlobShape.astro';
     recruiters: `¿Buscas talento? Con +5 años de experiencia, me especializo en frontend web, móvil y escritorio. Puedo crear desde interfaces con animaciones llamativas hasta aplicaciones simples, limpias y completamente funcionales.`,
     pms: `¿Cómo voy?👀 Trabajo para que tus ideas lleguen a producción con claridad y sin fricción. Me especializo en crear interfaces que combinan buena experiencia de usuario, rendimiento y una implementación frontend sólida.`,
     devs: `function getMessage() { return 'A parte de conocer lenguajes de programación, frameworks e integración de APIs, también me intereso en buenas prácticas, rendimiento y experiencia de usuario.' }; console.log(getMessage());`,
-    clients: `¿Tienes una idea en mente? Yo me encargo de ayudarte a transformarla en una interfaz usable y confiable. Trabajo contigo para entender tus necesidades y crear soluciones digitales que realmente funcionen para ti y tus usuarios.`,
   };
 
   function initAudienceSelector() {

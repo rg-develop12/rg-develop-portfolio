@@ -1,0 +1,221 @@
+---
+import { Image } from "astro:assets";
+import contactImg from "../assets/images/contact.png";
+import BlurredBlob from "./BlurredBlob.astro";
+import LinkedInIcon from "../assets/icons/brand-linkedin.svg";
+import EmailIcon from "../assets/icons/mail.svg";
+import ArrowRightIcon from "../assets/icons/arrow-right.svg";
+import ExternalLinkIcon from "../assets/icons/external-link.svg";
+import CopyIcon from "../assets/icons/copy.svg";
+
+const linkedInUrl = "https://www.linkedin.com/in/rgdev12/";
+---
+
+<section
+  class="pt-20 pb-32 px-5 md:px-8 bg-[#F9FBFF] relative overflow-hidden z-1"
+  id="contact"
+>
+  <BlurredBlob
+    color="#A2F4FD"
+    size={300}
+    shapeStyle="style-2"
+    className="top-20 left-0 hidden md:block"
+  />
+
+  <div class="max-w-7xl mx-auto flex flex-col-reverse md:flex-row items-center gap-12 md:gap-20">
+    <div class="w-full md:w-1/2 space-y-10 contact-content opacity-0">
+      <div class="space-y-4">
+        <h2 class="text-4xl md:text-5xl font-bold text-[#1A1A2E] relative">
+          Contáctame
+          <span class="block h-2 w-20 bg-indigo-500 mt-2 rounded-full"></span>
+        </h2>
+        <p class="text-lg text-gray-600 leading-relaxed">
+          Estoy abierto a nuevas oportunidades y colaboraciones. Si deseas trabajar conmigo, puedes contactarme aquí.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-6 max-w-md">
+        <div class="contact-card group p-6 bg-gray-50 rounded-2xl border border-gray-100 hover:border-indigo-200 hover:shadow-lg transition-all duration-300">
+          <div class="flex items-center gap-4 mb-4">
+            <div
+              class="p-3 bg-indigo-100 text-indigo-600 rounded-xl group-hover:scale-110 transition-transform duration-300"
+            >
+              <EmailIcon class="w-8 h-8" />
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-gray-800">Email</h3>
+              <p class="text-sm text-gray-500">Envíame un correo</p>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <button
+              id="btn-email-action"
+              class="flex-1 py-2.5 px-4 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2 text-sm font-medium shadow-sm hover:shadow-md cursor-pointer"
+            >
+              <span>Enviar</span>
+              <ArrowRightIcon class="w-4 h-4" />
+            </button>
+            <button
+              id="btn-email-copy"
+              class="px-4 py-2.5 bg-white border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 hover:text-indigo-600 transition-all flex items-center justify-center shadow-sm cursor-pointer"
+              aria-label="Copiar email"
+            >
+              <CopyIcon class="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="contact-card group p-6 bg-gray-50 rounded-2xl border border-gray-100 hover:border-blue-200 hover:shadow-lg transition-all duration-300"
+        >
+          <div class="flex items-center gap-4 mb-4">
+            <div class="p-3 bg-blue-100 text-blue-600 rounded-xl group-hover:scale-110 transition-transform duration-300">
+              <LinkedInIcon class="w-8 h-8" />
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-gray-800">LinkedIn</h3>
+              <p class="text-sm text-gray-500">Conectemos profesionalmente</p>
+            </div>
+          </div>
+          <div class="flex gap-3">
+            <a
+              href={linkedInUrl}
+              target="_blank"
+              class="flex-1 py-2.5 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 text-sm font-medium shadow-sm hover:shadow-md text-center"
+            >
+              <span>Ver Perfil</span>
+              <ExternalLinkIcon class="w-4 h-4" />
+            </a>
+            <button
+              id="btn-linkedin-copy"
+              class="px-4 py-2.5 bg-white border border-gray-200 text-gray-700 rounded-lg hover:bg-gray-50 hover:text-blue-600 transition-all flex items-center justify-center shadow-sm cursor-pointer"
+              aria-label="Copiar enlace perfil"
+            >
+              <CopyIcon class="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full md:w-1/2 flex justify-center relative contact-image-container opacity-0">
+      <div class="relative w-80 h-80 md:w-[500px] md:h-[500px]">
+        <BlurredBlob
+          color="#FFF085"
+          size={300}
+          shapeStyle="style-1"
+          className="bottom-0 right-0 opacity-60"
+        />
+        <Image
+          src={contactImg}
+          alt="Contacto"
+          class="w-full h-full object-contain relative z-10 floating-image"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .floating-image {
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+</style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const linkedInUrl = "https://www.linkedin.com/in/rgdev12/";
+  const userEmail = "roman.montano12";
+  const userDomain = "gmail.com";
+  const contactSection = document.getElementById("contact");
+
+  // Animation Logic
+  if (contactSection) {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: contactSection,
+        start: "top 70%",
+        once: true,
+      },
+    });
+
+    tl.fromTo(
+      ".contact-content",
+      { x: -50, opacity: 0 },
+      { x: 0, opacity: 1, duration: 0.7, ease: "power3.out" },
+    )
+      .fromTo(
+        ".contact-image-container",
+        { x: 50, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.7, ease: "power3.out" },
+        "-=0.5",
+      )
+      .fromTo(
+        ".contact-card",
+        { y: 20, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.5,
+          stagger: 0.1,
+          ease: "back.out(1.7)",
+        },
+        "-=0.3",
+      );
+  }
+
+  const getEmail = () => `${userEmail}@${userDomain}`;
+
+  const btnEmailAction = document.getElementById("btn-email-action");
+  const btnEmailCopy = document.getElementById("btn-email-copy");
+  const btnLinkedinCopy = document.getElementById("btn-linkedin-copy");
+
+  if (btnEmailAction) {
+    btnEmailAction.addEventListener("click", () => {
+      window.location.href = `mailto:${getEmail()}`;
+    });
+  }
+
+  if (btnEmailCopy) {
+    btnEmailCopy.addEventListener("click", () =>
+      copyToClipboard(getEmail(), btnEmailCopy),
+    );
+  }
+
+  if (btnLinkedinCopy) {
+    btnLinkedinCopy.addEventListener("click", () =>
+      copyToClipboard(
+        linkedInUrl,
+        btnLinkedinCopy,
+      ),
+    );
+  }
+
+  const copyToClipboard = async (text: string, btnElement: HTMLElement) => {
+    try {
+      await navigator.clipboard.writeText(text);
+
+      const originalContent = btnElement.innerHTML;
+      btnElement.innerHTML = `<svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>`;
+
+      setTimeout(() => {
+        btnElement.innerHTML = originalContent;
+      }, 2000);
+    } catch (err) {
+      console.error("Failed to copy:", err);
+    }
+  };
+</script>
