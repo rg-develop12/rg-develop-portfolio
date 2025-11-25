@@ -70,7 +70,7 @@ const projects = [
 ];
 ---
 
-<section class="py-20 px-5 md:px-8 bg-[#EBF0F9] relative z-1" id="projects">
+<section class="pt-20 pb-48 px-5 md:px-8 bg-[#EBF0F9] relative z-1" id="projects">
   <BlurredBlob color="#AD46FF" size={175} shapeStyle="style-1" className="top-30 right-15 xl:right-30 hidden sm:block" />
   <BlurredBlob color="#FFF085" size={175} shapeStyle="style-2" className="top-160 left-15 xl:left-30 hidden sm:block" />
   <BlurredBlob color="#D6B2FF" size={200} shapeStyle="style-1" className="bottom-50 right-15 xl:right-30 hidden sm:block" />
@@ -173,6 +173,12 @@ const projects = [
       {/* En agregaremos los dots */}
     </div>
   </div>
+
+  <div class="custom-shape-divider-bottom-1764039704">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M0,0V6c0,21.6,291,111.46,741,110.26,445.39,3.6,459-88.3,459-110.26V0Z" class="shape-fill"></path>
+    </svg>
+  </div>
 </section>
 
 <style>
@@ -191,6 +197,27 @@ const projects = [
     overflow: hidden;
     color: #F0B100;
     white-space: nowrap;
+  }
+
+  .custom-shape-divider-bottom-1764039704 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+  }
+
+  .custom-shape-divider-bottom-1764039704 svg {
+    position: relative;
+    display: block;
+    width: calc(113% + 1.3px);
+    height: 72px;
+  }
+
+  .custom-shape-divider-bottom-1764039704 .shape-fill {
+    fill: #FFFFFF;
   }
 </style>
 
@@ -388,7 +415,7 @@ const projects = [
     scrollTrigger: {
       trigger: "#projects",
       start: "top 80%",
-      toggleActions: "play reverse play reverse",
+      once: true
     }
   })
 
