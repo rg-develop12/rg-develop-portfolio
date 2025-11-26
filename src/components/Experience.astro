@@ -2,6 +2,15 @@
 import CalendarEvent from "../assets/icons/calendar-event.svg";
 import Buildings from "../assets/icons/buildings.svg";
 import BlurredBlob from "./BlurredBlob.astro";
+import Angular from "../assets/icons/technologies-icons/brand-angular.svg?raw";
+import Laravel from "../assets/icons/technologies-icons/brand-laravel.svg?raw";
+import Nodejs from "../assets/icons/technologies-icons/brand-nodejs.svg?raw";
+import Nuxt from "../assets/icons/technologies-icons/brand-nuxt.svg?raw";
+import Tailwind from "../assets/icons/technologies-icons/brand-tailwind.svg?raw";
+import Vue from "../assets/icons/technologies-icons/brand-vue.svg?raw";
+import Aws from "../assets/icons/technologies-icons/brand-aws.svg?raw";
+
+import { Image } from "astro:assets";
 
 // información de experiencia profesional
 const experiences = [
@@ -10,6 +19,7 @@ const experiences = [
     company: "Bluemedical",
     duration: "2022 - Presente",
     description: "Encargado del mantenimiento y desarrollo de aplicaciones web orientadas a clientes y plataformas de backoffice, creando nuevas funcionalidades y sistemas que optimizan la gestión de servicios médicos y seguros.",
+    tags: [Angular, Tailwind, Nuxt],
     cardColor: "#DFC8FD",
     textColor: "#1A1A2E",
     blobColor: "#DFC8FD",
@@ -19,6 +29,7 @@ const experiences = [
     company: "Publimovil S.A de C.V",
     duration: "2021 - 2022",
     description: "Me encargué de mantener y optimizar la plataforma web de renta de vallas publicitarias de la empresa y creé interfaces interactivas para campañas publicitarias.",
+    tags: [Vue, Laravel, Tailwind],
     cardColor: "#704EE7",
     textColor: "#fff",
     blobColor: "#C6BDE5",
@@ -28,6 +39,7 @@ const experiences = [
     company: "Telefónica El Salvador",
     duration: "2020 - 2021",
     description: "Creé y mantuve funcionalidades internas para el equipo de soporte, incorporando nuevas opciones según requerimientos, resolviendo incidencias en sistemas existentes y optimizando procesos repetitivos para mejorar la eficiencia operativa.",
+    tags: [Nodejs, Aws],
     cardColor: "#FFF9C7",
     textColor: "#1A1A2E",
     blobColor: "#FFF9C7",
@@ -93,9 +105,19 @@ const experiences = [
             </div>
             <div class="p-6 bg-white relative">
               <BlurredBlob color={exp.blobColor} size={100} shapeStyle="style-2" className="bottom-0 right-0" />
-              <div class="flex items-center gap-2 mb-4">
-                <CalendarEvent class="text-gray-500 w-5 h-5" />
-                <p class="text-sm text-gray-500 font-mono">{exp.duration}</p>
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-stretch gap-2">
+                  <CalendarEvent class="text-gray-500 w-5 h-5" />
+                  <p class="text-sm text-gray-500 font-mono">{exp.duration}</p>
+                </div>
+
+                <div class="flex items-center gap-2">
+                  {
+                    exp.tags.map((icon) => (
+                      <div class="text-gray-500" set:html={icon} />
+                    ))
+                  }
+                </div>
               </div>
               <p class="text-gray-700 leading-relaxed">{exp.description}</p>
             </div>
