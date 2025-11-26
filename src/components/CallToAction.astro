@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 ---
 
-<section class="py-24 bg-white flex flex-col items-center justify-center text-center px-4 overflow-hidden relative">
+<section class="pt-24 pb-40 bg-white flex flex-col items-center justify-center text-center px-4 overflow-hidden relative">
   <div class="relative z-1">
     <h2 class="text-3xl md:text-[46px] font-bold text-[#1A1A2E] mb-8 flex flex-col items-center justify-center gap-3">
       <span>Si necesitas</span>
@@ -22,7 +22,36 @@ import { Image } from "astro:assets";
       Contactar ahora
     </a>
   </div>
+
+  <div class="custom-shape-divider-bottom-1764128318">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M741,116.23C291,117.43,0,27.57,0,6V120H1200V6C1200,27.93,1186.4,119.83,741,116.23Z" class="shape-fill"></path>
+    </svg>
+  </div>
 </section>
+
+<style>
+  .custom-shape-divider-bottom-1764128318 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-bottom-1764128318 svg {
+    position: relative;
+    display: block;
+    width: calc(110% + 1.3px);
+    height: 70px;
+    transform: rotateY(180deg);
+}
+
+.custom-shape-divider-bottom-1764128318 .shape-fill {
+    fill: #EEEAF7;
+}
+</style>
 
 <style>
   .rolling-words {
