@@ -141,12 +141,6 @@ body {
   z-index: 2;
 }
 
-nav,
-footer {
-  z-index: 2;
-  color: #fff;
-}
-
 @media (max-width: 1000px) {
 
   .intro-title h1,
