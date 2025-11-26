@@ -1,46 +1,35 @@
-# Astro Starter Kit: Basics
+# RG Develop Portfolio
 
-```sh
-npm create astro@latest -- --template basics
-```
+¡Bienvenido a mi portafolio! Este proyecto muestra mi trabajo y mis habilidades como desarrollador.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🚀 Tech Stack
 
-## 🚀 Project Structure
+Este portfolio es construido principalmente con:
 
-Inside of your Astro project, you'll see the following folders and files:
+- **[Astro](https://astro.build/)**: Un framework web para construir sitios web orientados a contenido como blogs, marketing y comercio electrónico.
+- **[Tailwind CSS](https://tailwindcss.com/)**: Un framework CSS utilitario para el desarrollo rápido de interfaces de usuario.
+- **[GSAP](https://greensock.com/gsap/)**: El GreenSock Animation Platform, utilizado para crear animaciones robustas y de alto rendimiento en todo el sitio.
+
+## 🧞 Comandos
+
+Todos los comandos se ejecutan desde la raíz del proyecto, desde una terminal:
+
+| Comando                   | Acción                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Instalar dependencias                            |
+| `npm run dev`             | Iniciar servidor local en `localhost:4321`       |
+| `npm run build`           | Construir sitio en producción `./dist/`          |
+| `npm run preview`         | Previsualización local antes de desplegar        |
+
+## 📂 Estructura del proyecto
 
 ```text
 /
 ├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── layouts/
+│   └── pages/
 └── package.json
 ```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
